@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<include file="struts-default.xml" />
+	<constant name="struts.devMode" value="false"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<!-- convention扫描Action的路径 -->
+	<constant name="struts.convention.package.locators" value="action" />
+	<constant name="struts.multipart.maxSize" value="4194304" />
+	<constant name="struts.action.extension" value="ac" />
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant> 
+	<package name="" extends="struts-default" namespace="/">
+		  <interceptors>  
+			<interceptor name="annotationInterceptor" class="com.opensymphony.xwork2.interceptor.annotations.AnnotationWorkflowInterceptor"/>
+       		<interceptor-stack name="testStack">  
+       			<interceptor-ref name="annotationInterceptor"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref> 
+            </interceptor-stack>  
+        </interceptors> 
+
+		<!-- 入口 -->
+		<action name="req" class="com.bypay.action.ReqAction">
+			<result name="result">/pay_finally.jsp</result>
+			<result name="toPay">/eluomeng_pay.jsp</result>
+			<interceptor-ref name="testStack"></interceptor-ref>
+		</action>
+	</package>
+
+</struts>

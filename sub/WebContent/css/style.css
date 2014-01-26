@@ -1,0 +1,100 @@
+/* CSS Document */
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;}
+body,a{font:12px / 1.5 Verdana,Tahoma,Helvetica,Arial,\5b8b\4f53; color:#474747; }
+table,td,tr,th{font-size:12px; }
+th{font-weight:bold;}
+li{list-style-type:none;}
+img{border:0; vertical-align:middle;}
+ol,ul {list-style:none;}
+h1,h2,h3,h4,h5,h6{ font-weight:bold; font-size:14px;}
+td,th{ padding:6px 0;}
+em{font-style:normal;color:#ccc;}
+a{color:#31538f; text-decoration:none;}
+a:visited {text-decoration:none;}
+a:hover{text-decoration:underline;}
+a:active{color:#ba2636;}
+input,textarea,select{background:#fff; border-color:#999 #adadad #adadad #999; border-width:1px; border-style:solid; }
+.clear{ clear:both; display:block; width:100%; height:0px; font-size:2px;}
+.t_red{color:#e03233}
+
+/*------------online pay-----------*/	
+.payHead{width:100%; height:auto; padding-top:20px;}
+.payHeadBar{width:960px; height:72px; margin:0 auto;}
+.payTitle{float:left;width:720px;height:72px;margin-left:2px;background:url(../img/logo.png) no-repeat;overflow: hidden;text-align:left; }
+.payTitle h1{text-indent:380px; font:normal 16px/90px "Microsoft Yahei";}
+.payTitleHelp{float:right; width:150px; height:36px; margin-top:26px; line-height:36px;overflow:hidden; background:url(../img/online_phone.gif) no-repeat center right;}
+.payTitleHelp a{color:#666;}
+
+.payBar{ width:960px; height:auto; margin:20px auto 0;}
+.payBarLeft{float:left; width:220px; height:auto; margin-top:3px; padding-bottom:20px; background:#f2f2f2;}
+.payBarLeft h5{text-indent:12px; font:bold 12px/36px simsun; background:url(../img/btn_sprite.png) no-repeat 0 -128px;}
+.payOrderList{margin:6px 0 0 12px;}
+.payOrderList li{line-height:2}
+.payOrderList li span{color:#666;}
+.payBarLeft p{ width:196px; margin:50px 0 0 12px; padding-top:12px; border-top:1px dotted #ccc; line-height:1.5; color:#666;}
+
+.payBarRight{float:left; width:710px; height:auto; margin-left:30px;}
+
+.payChannel{width:100%; height:40px; background:url(../img/icon_sprite.png) repeat-x; overflow:hidden;}
+.payChannelBar{margin-left:34px;}
+.payChannelBar span{float:left; width:160px; height:40px; font:bold 14px/40px simsun; text-align:center; cursor:pointer; color:#666;}
+.payChannelBar span.active{border-top:3px solid #31538f;border-left:1px solid #31538f;border-right:1px solid #31538f; background:#fff; color:#31538f; cursor:default;}
+
+.formBar{ position:relative; margin-top:30px;}
+.formBar form{width:100%; height:auto;}
+
+.contentForm{ float:left; position:relative; width:100%; height:auto; margin-bottom:16px; }
+.contentForm label{float:left; width:180px; margin-right:4px; text-align:right; line-height:28px; font-size:14px;}
+.contentForm input,.input_txt{float:left;height:26px; padding-left:4px; line-height:26px; color:#333; font-size:14px;}
+.input_txt label{ width:36px; margin-right:30px;}
+.contentForm select{ display:inline-block; vertical-align:middle;padding:4px 3px;_padding: 0;_margin: 4px 0 0;}
+input.fixed{ background:#f2f2f2; color:#333; border:1px solid #e1e1e1;}
+.fixedText{float:left;height:28px; line-height:28px; color:#333;}
+
+.contentForm input.focus{ border-color:#4975b8;}
+.contentForm input,.contentForm select,.contentForm p,.contentForm a{vertical-align:middle;}
+
+.contentForm input.long{ width:220px;}
+.contentForm .tips,.contentForm .tipsWrong{ float:left; width:100%; line-height:18px; text-indent:184px;}
+.contentForm .tips,.contentForm .tipsWrong{color:#b1b1b1;}
+.contentForm .tipsRight{ float:left; display:none; width:16px; height:16px; margin:8px 0 0 4px; background:url(../img/icon_sprite.png) no-repeat 0 -104px;}
+.contentForm .tipsWrong{color:#e03233}
+
+.contentForm .double{float:left;}
+.contentForm .double input{float:none; display:inline-block; margin-right:4px;}
+
+.getCode{ display:inline-block; width:auto;color:#888;font-size:12px;line-height:24px;}
+.authCode{display:inline-block; width:102px; height:28px; font-weight:bold; text-align:center; background:url(../img/btn_sprite.png) no-repeat 0 0; line-height:28px; color:#333;}
+.authCode:hover{ background:url(../img/btn_sprite.png) no-repeat 0 -28px;text-decoration:none;}
+.timer{height:26px; padding:0 8px; background:#f5f5f5; border:1px solid #ccc;}
+
+.formBtnBar{ float:left; width:100%; height:36px; margin-bottom:20px;}
+.formBtnH,.formBtn{float:left; width:180px; height:36px; margin:0 20px 0 184px; background:url(../img/btn_sprite.png) no-repeat;border:none; cursor:pointer; color:#fff; font-weight:bold; text-align:center; line-height:36px; font-size:14px;}
+.formBtn{background-position:0 -56px;}
+.formBtnH{background-position:0 -92px;}
+
+.treatyBox{float:left;width:500px; height:60px;margin:0 0 0 184px;padding:6px;border:1px solid #CCC;color:#666;overflow-y:scroll; line-height:1.5em;text-indent:2em;}
+.treatyBox p{ margin-bottom:8px;font-size:12px;}
+
+.pay_note{ float:left; position:absolute; right:0; top:0; width:280px; height:auto; padding:10px; background:#f5f5f5;color:#777;}
+.pay_note h3{ line-height:2.6; font-size:14px; }
+.pay_note table,.pay_note td,.pay_note tr{ border:none}
+.pay_note p{ text-indent:2em;}
+
+
+.payFooterBar{ clear:both; width:960px; height:auto; margin:40px auto 0; padding-top:12px; border-top:3px solid #b8b8b8;}
+.payFooter{width:960px; height:30px; margin:0 auto; color:#b8b8b8;}
+.payFooterLink{ float:left; width:500px;}
+.payFooterLink a{ color:#666;}
+.payFooterLink span{ margin:0 6px;}
+.payCopyright{ float:right; width:450px; text-align:right;}
+
+/*------------online pay finally-----------*/
+.payFinally{ width:710px; height:auto; margin:40px auto 0; padding:50px 125px; background:#f2f2f2;}
+.payOrder{ margin:10px 0 0 40px; padding:40px 20px; background:#fff url(../img/icon_sprite.png) repeat-x 0 -120px;}
+.orderTitle{ float:left; width:260px; height:32px;font:24px/32px "Microsoft Yahei"; text-indent:40px;}
+.orderWrong{ background:url(../img/icon_sprite.png) no-repeat 0 -72px;color:#e03233;}
+.orderRight{ background:url(../img/icon_sprite.png) no-repeat 0 -40px;color:#1c8a1c;}
+.orderBack{ float:left; width:160px; line-height:32px; font-size:14px;}
+.orderBack a{ font-size:14px; text-decoration:underline; font-weight:bold;}
+.cardKind{ margin:0 4px; background:#ccc; color:#fff; padding:1px 2px; border-radius:2px;}

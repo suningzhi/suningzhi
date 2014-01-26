@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<project name="sub" default="deploy" basedir="." >  
+    <description>用ANT将sub发布成WAR</description>  
+     <property file="build.properties"/>
+    <!-- 定义发布需要用到的属性 -->  
+    <!-- WEB容器需要用到的属性 -->  
+    <property name="tomcat.home" value="${tomcate.url}"/>  
+    <property name="webapps.home" value="${tomcate.url}/webapps"></property>  
+      
+    <!-- 定义打包需要涉及的本地工程目录 属性 -->  
+    <property name="app.home" value="."></property>  
+    <property name="app.name" value="sub"></property>  
+    <property name="javadoc.pkg" value="help"></property>  
+      
+    <property name="src.home" value="${app.home}/src"></property>  
+    <property name="web.home" value="${app.home}/WebContent"></property>  
+    <property name="lib.home" value="${web.home}/WEB-INF/lib"></property>  
+    <property name="classes.home" value="${web.home}/WEB-INF/classes"></property>  
+    <property name="doc.home" value="${app.home}/doc"></property>  
+          
+    <!-- 定义构建WEB应用的良好的文件目录 属性 -->  
+    <property name="build.home" value="${app.home}/build"></property>  
+    <property name="build.classes" value="${build.home}/WEB-INF/classes"></property>  
+    <property name="build.lib" value="${build.home}/WEB-INF/lib"></property>  
+          
+    <!-- 定义发布目录 最后工程将WAR文件COPY在该目录下，发布的时候只要将此文件拷贝到${webapps.home}指定的目录下 -->  
+    <property name="eluoment.home" value="${app.home}/eluoment"></property>  
+      
+    <!-- 应用需要用到的类库支持文件 包括工程本身lib目录下的所有.jar和web容器中lib目录下的所有.jar文件 -->  
+    <path id="compile.classpath">  
+        <pathelement location="${classes.home}" />  
+        <fileset dir="${lib.home}">  
+            <include name="*.jar" />  
+            <include name="*.zip" />  
+        </fileset>  
+          
+        <fileset dir="${tomcat.home}/lib">  
+            <include name="*.jar"/>  
+        </fileset>  
+        <pathelement location="${tomcat.home}/classes"/>        
+    </path>  
+      
+    <!-- 删除历史发布痕迹 -->       
+    <target name="clean_all">  
+        <delete dir="${build.home}"></delete>  
+        <delete dir="${classes.home}"></delete>  
+        <delete dir="${eluoment.home}"></delete>  
+          
+        <delete dir="${webapps.home}/${app.name}" failonerror="false"></delete>  
+        <delete dir="${webapps.home}/${app.name}.war"></delete>  
+          
+        <delete dir="${doc.home}"></delete>  
+    </target>  
+      
+    <!-- 创建新的发布所涉及的路径 它取决于clean_all这个target，也就是说如果要执行它，首先得等clean_all执行完毕 -->  
+    <target name="prepare" depends="clean_all">  
+        <echo message="Tomacat Home=${tomcat.home}"></echo>  
+        <echo message="webapps Home=${webapps.home}"></echo>  
+          
+        <mkdir dir="${classes.home}"/>  
+        <mkdir dir="${eluoment.home}"/>  
+        <mkdir dir="${doc.home}"/>  
+        <mkdir dir="${doc.home}/api"/>  
+          
+        <mkdir dir="${build.home}"/>  
+        <mkdir dir="${build.home}/WEB-INF"/>  
+        <mkdir dir="${build.home}/WEB-INF/classes"/>  
+        <mkdir dir="${build.home}/WEB-INF/lib"/>  
+    </target>  
+              
+    <!-- 编译工程目录【${src.home}】下的所有java文件，并将编译好的class文件放在【${classes.home}】下面。编译的时候需要类库的支持 -->      
+    <target name="compile" depends="prepare">  
+        <javac srcdir="${src.home}" destdir="${classes.home}" debug="yes">  
+            <classpath refid="compile.classpath"></classpath>  
+        </javac>  
+    </target>  
+                  
+    <!-- 构建良好的WEB application结构。将工程目录下的对应的文件COPY构建目录下 -->  
+    <target name="build" depends="compile">  
+        <copy todir="${build.home}">  
+            <fileset dir="${web.home}"></fileset>  
+        </copy>  
+          
+        <copy todir="${build.classes}">  
+            <fileset dir="${classes.home}"></fileset>  
+        </copy>  
+        <copy todir="${build.classes}">  
+            <!-- 打包工程目录下的所有资源文件。如果存在不同后缀名的资源文件则在include里面引入 -->  
+            <fileset dir="${src.home}">  
+                <include name="**/*.properties" />  
+                <include name="**/*.xml" />  
+            </fileset>  
+        </copy>  
+          
+        <copy todir="${build.lib}">  
+            <fileset dir="${lib.home}"></fileset>  
+        </copy>  
+        <!-- 打包BUILD目录下的文件成为一个WAR文件 -->  
+        <jar jarfile="${eluoment.home}/${app.name}.war"   
+            basedir="${build.home}">  
+        </jar>  
+    </target>  
+      
+    <!-- 发布，直接将${deploy.home}/${app.name}.war拷贝至web容器下的发布目录 -->  
+    <target name="deploy" depends="build">  
+        <copy todir="${webapps.home}" file="${eluoment.home}/${app.name}.war"></copy>  
+    </target>  
+      
+    <!-- 生成发布文档 -->  
+    <target name="javaDoc" depends="compile">  
+        <javadoc source="${src.home}"  
+                destdir="${doc.home}/api"  
+                packagenames="%{javadoc.pkg}.*">  
+        </javadoc>  
+    </target>  
+  
+</project>  
